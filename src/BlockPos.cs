@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Hosihikari.Minecraft.Foundation;
+namespace Hosihikari.Minecraft;
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
