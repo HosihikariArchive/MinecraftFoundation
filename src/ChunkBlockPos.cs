@@ -1,43 +1,54 @@
-﻿using Hosihikari.NativeInterop.Generation;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
-public struct ChunkLocalHeight
+public struct ChunkLocalHeight(short v)
 {
-    internal short val;
+    internal short val = v;
 
-    public short Val { readonly get => val; set => val = value; }
-
-    public ChunkLocalHeight(short v)
+    public short Val
     {
-        val = v;
+        readonly get => val;
+        set => val = value;
     }
 
-    public static implicit operator ChunkLocalHeight(short v) => new(v);
+    public static implicit operator ChunkLocalHeight(short v)
+    {
+        return new(v);
+    }
 }
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
-public struct ChunkBlockPos
+public struct ChunkBlockPos(byte x, short y, byte z)
 {
-    internal byte x;
-    internal byte z;
-    ChunkLocalHeight y;
+    internal byte x = x;
+    internal byte z = z;
+    internal ChunkLocalHeight y = new(y);
 
-    public byte X { readonly get => x; set => x = value; }
-    public byte Z { readonly get => z; set => z = value; }
-    public ChunkLocalHeight Y { readonly get => y; set => y = value; }
-
-    public ChunkBlockPos(byte x, short y, byte z)
+    public byte X
     {
-        this.x = x;
-        this.z = z;
-        this.y = new(y);
+        readonly get => x;
+        set => x = value;
+    }
+
+    public byte Z
+    {
+        readonly get => z;
+        set => z = value;
+    }
+
+    public ChunkLocalHeight Y
+    {
+        readonly get => y;
+        set => y = value;
     }
 
     public readonly ushort ToLegacyIndex()
-        => (ushort)((y.val & 0xF) + 16 * (z + 16 * x));
+    {
+        return (ushort)((y.val & 0xF) + 16 * (z + 16 * x));
+    }
 }

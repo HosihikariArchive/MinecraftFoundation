@@ -1,24 +1,33 @@
-﻿using Hosihikari.NativeInterop.Generation;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct BlockPos
+public unsafe struct BlockPos(int x, int y, int z)
 {
-    internal int x;
-    internal int y;
-    internal int z;
+    internal int x = x;
+    internal int y = y;
+    internal int z = z;
 
-    public int X { readonly get => x; set => x = value; }
-    public int Y { readonly get => y; set => y = value; }
-    public int Z { readonly get => z; set => z = value; }
-
-    public BlockPos(int x, int y, int z)
+    public int X
     {
-        this.x = x; this.y = y; this.z = z;
+        readonly get => x;
+        set => x = value;
+    }
+
+    public int Y
+    {
+        readonly get => y;
+        set => y = value;
+    }
+
+    public int Z
+    {
+        readonly get => z;
+        set => z = value;
     }
 
     private static BlockPos* MAX_ptr;
@@ -37,14 +46,29 @@ public unsafe struct BlockPos
 
     public static BlockPos ZERO => *ZERO_ptr;
 
-    public override unsafe int GetHashCode()
+    public override int GetHashCode()
     {
         fixed (BlockPos* pos = &this)
         {
-            ulong num = (ulong)((((*(byte*)pos ^ -3750763034362895579L) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 1uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 2uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 3uL));
+            ulong num =
+                (ulong)(((((((*(byte*)pos ^ -3750763034362895579L) * 1099511628211L) ^
+                            *(byte*)((ulong)(nint)pos + 1uL)) * 1099511628211L) ^ *(byte*)((ulong)(nint)pos + 2uL)) *
+                         1099511628211L) ^ *(byte*)((ulong)(nint)pos + 3uL));
             ulong num2 = 2654435769L + num * 1099511628211L;
-            ulong num3 = (num2 >> 2) + (ulong)(172538324985L + (((((*(byte*)((ulong)(nint)pos + 4uL) ^ -3750763034362895579L) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 5uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 6uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 7uL)) + (long)(num * 64)) * 1099511628211L) ^ num2;
-            return (int)((num3 >> 2) + (ulong)(2654435769L + ((((*(byte*)((ulong)(nint)pos + 8uL) ^ -3750763034362895579L) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 9uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 10uL)) * 1099511628211L ^ *(byte*)((ulong)(nint)pos + 11uL)) * 1099511628211L + (long)(num3 * 64)) ^ num3);
+            ulong num3 = ((num2 >> 2) + (ulong)(172538324985L +
+                                                ((((((((*(byte*)((ulong)(nint)pos + 4uL) ^ -3750763034362895579L) *
+                                                       1099511628211L) ^ *(byte*)((ulong)(nint)pos + 5uL)) *
+                                                     1099511628211L) ^ *(byte*)((ulong)(nint)pos + 6uL)) *
+                                                  1099511628211L) ^
+                                                  *(byte*)((ulong)(nint)pos + 7uL)) + (long)(num * 64)) *
+                                                1099511628211L)) ^ num2;
+            return (int)(((num3 >> 2) + (ulong)(2654435769L +
+                                                (((((((*(byte*)((ulong)(nint)pos + 8uL) ^ -3750763034362895579L) *
+                                                      1099511628211L) ^ *(byte*)((ulong)(nint)pos + 9uL)) *
+                                                    1099511628211L) ^ *(byte*)((ulong)(nint)pos + 10uL)) *
+                                                 1099511628211L) ^
+                                                 *(byte*)((ulong)(nint)pos + 11uL)) * 1099511628211L +
+                                                (long)(num3 * 64))) ^ num3);
         }
     }
 
@@ -59,7 +83,7 @@ public unsafe struct BlockPos
         }
     }
 
-    public unsafe ref int this[int index]
+    public ref int this[int index]
     {
         get
         {
@@ -70,30 +94,26 @@ public unsafe struct BlockPos
                 {
                     2 => (nint)(num + 8),
                     1 => (nint)(num + 4),
-                    _ => (nint)num,
+                    _ => (nint)num
                 });
             }
         }
     }
 
-    public readonly BlockPos[] Neighbors
-    {
-        get
-        {
-            return new BlockPos[6]
-            {
-                new(x,y-1,z),
-                new(x,y+1,z),
-                new(x,y,z-1),
-                new(x,y,z+1),
-                new(x-1,y,z),
-                new(x+1,y,z),
-            };
-        }
-    }
+    public readonly BlockPos[] Neighbors =>
+    [
+        new(x, y - 1, z),
+        new(x, y + 1, z),
+        new(x, y, z - 1),
+        new(x, y, z + 1),
+        new(x - 1, y, z),
+        new(x + 1, y, z)
+    ];
 
     public BlockPos Add(int dx, int dy = 0, int dz = 0)
-        => new(x + dx, y + dy, z + dz);
+    {
+        return new(x + dx, y + dy, z + dz);
+    }
 
     public static bool operator ==(in BlockPos obj, in BlockPos b)
     {
@@ -179,12 +199,12 @@ public unsafe struct BlockPos
         return result;
     }
 
-    public override readonly bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
-        if (obj == null) return false;
-
         if (obj is BlockPos bp)
+        {
             return this == bp;
+        }
 
         return false;
     }

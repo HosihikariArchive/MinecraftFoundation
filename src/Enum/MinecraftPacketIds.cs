@@ -3,7 +3,7 @@
 namespace Hosihikari.Minecraft;
 
 [PredefinedType]
-public enum MinecraftPacketIds : int
+public enum MinecraftPacketIds
 {
     KeepAlive = 0x0,
     Login = 0x1,
@@ -211,5 +211,5 @@ public enum MinecraftPacketIds : int
     OpenSign = 0x12F,
     AgentAnimation = 0x130,
     RefreshEntitlements = 0x131,
-    EndId,
-};
+    EndId
+}

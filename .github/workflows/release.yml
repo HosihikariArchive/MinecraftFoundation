@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      prerelease:
+        type: boolean
+        required: true
+        description: Prerelease or not
+
+env:
+  BUILD_TYPE: Release
+  DOTNET_VERSION: 8
+  ASSEMBLY_NAME: Hosihikari.Minecraft.Foundation
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3.5.3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}.0.x
+
+      - name: Build
+        run: dotnet publish -c ${{env.BUILD_TYPE}}
+
+      - name: Publish NuGet
+        id: publish-nuget
+        uses: alirezanet/publish-nuget@v3.1.0
+        with:
+          PROJECT_FILE_PATH: src/${{env.ASSEMBLY_NAME}}.csproj
+          VERSION_FILE_PATH: Directory.Build.props
+          TAG_COMMIT: false
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+          NO_BUILD: true
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          path: src/bin/Release/net${{env.DOTNET_VERSION}}.0/publish/

@@ -1,24 +1,26 @@
-﻿using Hosihikari.NativeInterop.Generation;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct ChunkPos
+public struct ChunkPos(int ix, int iz)
 {
-    internal int x;
-    internal int z;
+    internal int x = ix;
+    internal int z = iz;
 
-    public int X { readonly get => x; set => x = value; }
-    public int Z { readonly get => z; set => z = value; }
-
-    public ChunkPos(int ix, int iz)
+    public int X
     {
-        x = ix;
-        z = iz;
+        readonly get => x;
+        set => x = value;
     }
 
-    public readonly int this[ulong index]
-        => index switch { 1 => z, _ => x };
+    public int Z
+    {
+        readonly get => z;
+        set => z = value;
+    }
+
+    public readonly int this[ulong index] => index switch { 1 => z, _ => x };
 }

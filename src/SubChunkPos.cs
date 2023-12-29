@@ -1,24 +1,31 @@
-﻿using Hosihikari.NativeInterop.Generation;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
 [PredefinedType]
 [StructLayout(LayoutKind.Sequential)]
-public struct SubChunkPos
+public struct SubChunkPos(int x, int y, int z)
 {
-    internal int x;
-    internal int y;
-    internal int z;
+    internal int x = x;
+    internal int y = y;
+    internal int z = z;
 
-    public int X { get => x; set => x = value; }
-    public int Y { get => y; set => y = value; }
-    public int Z { get => z; set => z = value; }
-
-    public SubChunkPos(int x, int y, int z)
+    public int X
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        get => x;
+        set => x = value;
+    }
+
+    public int Y
+    {
+        get => y;
+        set => y = value;
+    }
+
+    public int Z
+    {
+        get => z;
+        set => z = value;
     }
 }

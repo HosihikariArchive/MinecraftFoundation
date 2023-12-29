@@ -1,18 +1,12 @@
-﻿using Hosihikari.NativeInterop.Generation;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft.Mce;
 
 [StructLayout(LayoutKind.Sequential)]
 [PredefinedType(NativeTypeName = "UUID", NativeTypeNamespace = "mce")]
-public struct UUID
+public struct UUID(ulong a, ulong b)
 {
-    public ulong A;
-    public ulong B;
-
-    public UUID(ulong a, ulong b)
-    {
-        A = a;
-        B = b;
-    }
+    public ulong A = a;
+    public ulong B = b;
 }
