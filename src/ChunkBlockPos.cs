@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using Hosihikari.NativeInterop.Generation;
+﻿using Hosihikari.NativeInterop.Generation;
+using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
@@ -49,6 +49,6 @@ public struct ChunkBlockPos(byte x, short y, byte z)
 
     public readonly ushort ToLegacyIndex()
     {
-        return (ushort)((y.val & 0xF) + 16 * (z + 16 * x));
+        return (ushort)((y.val & 0xF) + (16 * (z + (16 * x))));
     }
 }

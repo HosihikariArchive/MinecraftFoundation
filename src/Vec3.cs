@@ -1,6 +1,6 @@
-﻿using System.Numerics;
+﻿using Hosihikari.NativeInterop.Generation;
+using System.Numerics;
 using System.Runtime.InteropServices;
-using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
@@ -46,7 +46,7 @@ public struct Vec3(float x, float y, float z)
 
     public static float Dot(in Vec3 a, in Vec3 b)
     {
-        return a.y * b.y + a.x * b.x + a.z * b.z;
+        return (a.y * b.y) + (a.x * b.x) + (a.z * b.z);
     }
 
     public static Vec3 operator *(in Vec3 lhs, in Vec3 rhs)

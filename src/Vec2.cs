@@ -1,6 +1,6 @@
-﻿using System.Numerics;
+﻿using Hosihikari.NativeInterop.Generation;
+using System.Numerics;
 using System.Runtime.InteropServices;
-using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
@@ -28,7 +28,7 @@ public struct Vec2(float x, float y)
     {
     }
 
-    public readonly override string ToString()
+    public override readonly string ToString()
     {
         return $"{x},{y}";
     }

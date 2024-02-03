@@ -1,19 +1,19 @@
-﻿using System.Text.RegularExpressions;
-using Hosihikari.NativeInterop.Generation;
+﻿using Hosihikari.NativeInterop.Generation;
 using Hosihikari.NativeInterop.Unmanaged;
 using Hosihikari.NativeInterop.Unmanaged.STL;
+using System.Text.RegularExpressions;
 
 namespace Hosihikari.Minecraft.Foundation.Bedrock;
 
-public struct Result<Err>
-    where Err : unmanaged
+public struct Result<TErr>
+    where TErr : unmanaged
 {
     public readonly bool HasValue => hasValue;
 
-    public ref Err Error => ref error.Error;
+    public ref TErr Error => ref _error.Error;
 
 
-    private ErrorInfo<Err> error;
+    private ErrorInfo<TErr> _error;
     private readonly NativeBool hasValue;
 }
 

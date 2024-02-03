@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using Hosihikari.NativeInterop.Generation;
+﻿using Hosihikari.NativeInterop.Generation;
+using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 

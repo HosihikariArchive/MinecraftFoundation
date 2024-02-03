@@ -1,12 +1,12 @@
 ﻿namespace Hosihikari.Minecraft.Foundation.Bedrock;
 
-public unsafe struct ErrorInfo<E>
-    where E : unmanaged
+public unsafe struct ErrorInfo<TE>
+    where TE : unmanaged
 {
-    private E error;
-    private fixed byte filler[0x30];
+    private TE _error;
+    private fixed byte _filler[0x30];
 
 #pragma warning disable CS9084
-    public ref E Error => ref error;
+    public ref TE Error => ref _error;
 #pragma warning restore CS9084
 }

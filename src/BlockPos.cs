@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Hosihikari.NativeInterop.Generation;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
@@ -54,20 +54,20 @@ public unsafe struct BlockPos(int x, int y, int z)
                 (ulong)(((((((*(byte*)pos ^ -3750763034362895579L) * 1099511628211L) ^
                             *(byte*)((ulong)(nint)pos + 1uL)) * 1099511628211L) ^ *(byte*)((ulong)(nint)pos + 2uL)) *
                          1099511628211L) ^ *(byte*)((ulong)(nint)pos + 3uL));
-            ulong num2 = 2654435769L + num * 1099511628211L;
+            ulong num2 = 2654435769L + (num * 1099511628211L);
             ulong num3 = ((num2 >> 2) + (ulong)(172538324985L +
-                                                ((((((((*(byte*)((ulong)(nint)pos + 4uL) ^ -3750763034362895579L) *
-                                                       1099511628211L) ^ *(byte*)((ulong)(nint)pos + 5uL)) *
-                                                     1099511628211L) ^ *(byte*)((ulong)(nint)pos + 6uL)) *
-                                                  1099511628211L) ^
-                                                  *(byte*)((ulong)(nint)pos + 7uL)) + (long)(num * 64)) *
-                                                1099511628211L)) ^ num2;
+                                                (((((((((*(byte*)((ulong)(nint)pos + 4uL) ^ -3750763034362895579L) *
+                                                        1099511628211L) ^ *(byte*)((ulong)(nint)pos + 5uL)) *
+                                                      1099511628211L) ^ *(byte*)((ulong)(nint)pos + 6uL)) *
+                                                    1099511628211L) ^
+                                                   *(byte*)((ulong)(nint)pos + 7uL)) + (long)(num * 64)) *
+                                                 1099511628211L))) ^ num2;
             return (int)(((num3 >> 2) + (ulong)(2654435769L +
-                                                (((((((*(byte*)((ulong)(nint)pos + 8uL) ^ -3750763034362895579L) *
-                                                      1099511628211L) ^ *(byte*)((ulong)(nint)pos + 9uL)) *
-                                                    1099511628211L) ^ *(byte*)((ulong)(nint)pos + 10uL)) *
-                                                 1099511628211L) ^
-                                                 *(byte*)((ulong)(nint)pos + 11uL)) * 1099511628211L +
+                                                ((((((((*(byte*)((ulong)(nint)pos + 8uL) ^ -3750763034362895579L) *
+                                                       1099511628211L) ^ *(byte*)((ulong)(nint)pos + 9uL)) *
+                                                     1099511628211L) ^ *(byte*)((ulong)(nint)pos + 10uL)) *
+                                                   1099511628211L) ^
+                                                  *(byte*)((ulong)(nint)pos + 11uL)) * 1099511628211L) +
                                                 (long)(num3 * 64))) ^ num3);
         }
     }
@@ -79,7 +79,7 @@ public unsafe struct BlockPos(int x, int y, int z)
             int z = this.z;
             int y = this.y;
             int x = this.x;
-            return Math.Sqrt(x * x + y * y + z * z);
+            return Math.Sqrt((x * x) + (y * y) + (z * z));
         }
     }
 
@@ -117,13 +117,13 @@ public unsafe struct BlockPos(int x, int y, int z)
 
     public static bool operator ==(in BlockPos obj, in BlockPos b)
     {
-        int num = obj.x == b.x && obj.y == b.y && obj.z == b.z ? 1 : 0;
+        int num = (obj.x == b.x) && (obj.y == b.y) && (obj.z == b.z) ? 1 : 0;
         return (byte)num != 0;
     }
 
     public static bool operator !=(in BlockPos obj, in BlockPos b)
     {
-        int num = obj.x != b.x || obj.y != b.y || obj.z != b.z ? 1 : 0;
+        int num = (obj.x != b.x) || (obj.y != b.y) || (obj.z != b.z) ? 1 : 0;
         return (byte)num != 0;
     }
 
@@ -199,7 +199,7 @@ public unsafe struct BlockPos(int x, int y, int z)
         return result;
     }
 
-    public readonly override bool Equals(object? obj)
+    public override readonly bool Equals(object? obj)
     {
         if (obj is BlockPos bp)
         {
