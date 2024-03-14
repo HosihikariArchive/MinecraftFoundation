@@ -1,4 +1,4 @@
-﻿using Hosihikari.NativeInterop.Generation;
+using Hosihikari.NativeInterop.Generation;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
