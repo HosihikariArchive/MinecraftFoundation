@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType]
+[PredefinedType(TypeName = "class ChunkLocalHeight")]
 [StructLayout(LayoutKind.Sequential)]
 public struct ChunkLocalHeight(short v)
 {
@@ -21,7 +21,7 @@ public struct ChunkLocalHeight(short v)
     }
 }
 
-[PredefinedType]
+[PredefinedType(TypeName = "class ChunkBlockPos")]
 [StructLayout(LayoutKind.Sequential)]
 public struct ChunkBlockPos(byte x, short y, byte z)
 {

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Hosihikari.Minecraft.Mce;
 
 [StructLayout(LayoutKind.Sequential)]
-[PredefinedType(NativeTypeName = "Color", NativeTypeNamespace = "mce")]
+[PredefinedType(TypeName = "class mce::Color")]
 public struct Color(float r, float g, float b, float a)
 {
     public float R = r;

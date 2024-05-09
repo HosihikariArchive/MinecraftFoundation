@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType]
+[PredefinedType(TypeName = "class Vec2")]
 [StructLayout(LayoutKind.Sequential)]
 public struct Vec2(float x, float y)
 {

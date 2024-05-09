@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType]
+[PredefinedType(TypeName = "class SubChunkPos")]
 [StructLayout(LayoutKind.Sequential)]
 public struct SubChunkPos(int x, int y, int z)
 {

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType]
+[PredefinedType(TypeName = "class AABB")]
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct AABB
 {

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Hosihikari.Minecraft.Mce;
 
 [StructLayout(LayoutKind.Sequential)]
-[PredefinedType(NativeTypeName = "UUID", NativeTypeNamespace = "mce")]
+[PredefinedType(TypeName = "class mce::UUID")]
 public struct UUID(ulong a, ulong b)
 {
     public ulong A = a;

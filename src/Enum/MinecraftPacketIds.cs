@@ -2,7 +2,7 @@ using Hosihikari.NativeInterop.Generation;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType]
+[PredefinedType(TypeName = "enum class MinecraftPacketIds")]
 public enum MinecraftPacketIds
 {
     KeepAlive = 0x0,

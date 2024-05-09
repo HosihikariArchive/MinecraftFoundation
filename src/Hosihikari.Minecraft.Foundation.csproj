@@ -9,7 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Hosihikari.NativeInterop" Version="1.0.8"/>
+      <Reference Include="Hosihikari.NativeInterop">
+        <HintPath>..\..\NativeInterop\src\bin\Release\net8.0\Hosihikari.NativeInterop.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
