@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <Authors>星光 Community</Authors>
         <Title>Predefined Minecraft types</Title>
         <Description>Predefined types of Minecraft</Description>
