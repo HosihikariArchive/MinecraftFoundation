@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Hosihikari.Minecraft;
 
-[PredefinedType(TypeName ="class BlockPos")]
+[PredefinedType(TypeName = "class BlockPos")]
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct BlockPos(int x, int y, int z)
 {
